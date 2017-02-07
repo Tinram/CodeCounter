@@ -45,7 +45,7 @@ options:
 
 Install [FreeBASIC](http://www.freebasic.net/forum/viewforum.php?f=1) compiler (fbc).
 
-Ensure GCC is available.
+Ensure GCC is available: `whereis gcc`
 
 
 ### Linux
@@ -57,7 +57,7 @@ or full process:
     make && make install
 
 
-### Compile Manually
+### Windows / Compile Manually
 
     fbc codecounter.bas -gen gcc -O max
 
