@@ -45,6 +45,14 @@ For large projects, pipe Code Counter's file-by-file output to a file for later 
         codecounter -c > cc_out.txt
 
 
+## Executables
+
+Download from [Releases](https://github.com/Tinram/CodeCounter/releases/latest) or directly:
+
++ Linux x64: [codecounter](https://github.com/Tinram/CodeCounter/raw/master/bin/codecounter)
++ Windows x32/x64: [codecounter.exe](https://github.com/Tinram/CodeCounter/raw/master/bin/codecounter.exe)
+
+
 ## Build
 
 Install [FreeBASIC](http://www.freebasic.net/forum/viewforum.php?f=1) compiler (fbc).
@@ -53,7 +61,6 @@ Install [FreeBASIC](http://www.freebasic.net/forum/viewforum.php?f=1) compiler (
 
 Ensure GCC is available: `whereis gcc`
 
-
 ### Linux
 
         make
@@ -61,7 +68,6 @@ Ensure GCC is available: `whereis gcc`
 or full process:
 
         make && make install
-
 
 ### Windows / Compile Manually
 
