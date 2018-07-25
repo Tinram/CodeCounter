@@ -3,7 +3,7 @@
 
 ### Recursive source code line counter.
 
-##### Code Counter v.1.1
+##### Code Counter v.1.12
 
 
 ## Purpose
@@ -18,16 +18,12 @@ Original aim: initiate Code Counter in a project's top-level directory and provi
 ## OS Support
 
 + Linux
-
-    + x32
-    + x64 (with 32-bit library support available)
-
 + Windows
 
 
 ## Usage
 
-        codecounter [option]
+        codecounter <option> [-s]
 
 *options:*
 
@@ -36,6 +32,8 @@ Original aim: initiate Code Counter in a project's top-level directory and provi
         -b    process BASIC source files: .bas, .bi, .vb
 
         -w    process general web files: .html, .htm, .css, .php, .inc, .tpl, .js, .sql
+
+        -s    suppress individual file breakdown (display only project summary)
 
 
 ## Output
@@ -48,6 +46,8 @@ For large projects, pipe Code Counter's file-by-file output to a file for later 
 ## Build
 
 Install [FreeBASIC](http://www.freebasic.net/forum/viewforum.php?f=1) compiler (fbc).
+
+(Linux: fbc x64 version makes more convenient executables.)
 
 Ensure GCC is available: `whereis gcc`
 
@@ -63,23 +63,23 @@ or full process:
 
 ### Windows / Compile Manually
 
-        fbc codecounter.bas -gen gcc -O max
+        fbc codecounter.bas -gen gcc -O max -w all
 
 
 ## Other
 
-On both Linux and Windows, it's more convenient for Code Counter to be available from any directory location via the PATH system variable (rather than copying the executable file to the directory where needed).
+On both Linux and Windows, it's more convenient for Code Counter to be available from any directory location via the *$PATH* system variable (rather than copying the executable file to the directory where needed).
 
 
 ### Linux
 
         make install
 
-Or move the *codecounter* executable to a location such as */usr/local/bin* (location must be present in $PATH).
+Or move the *codecounter* executable to a location such as */usr/local/bin* (location must be present in *$PATH*).
 
 ### Windows
 
-[Windows key + Break] > Advanced tab > Environmental Variables button > click Path line > Edit button > Variable value - append at the end of existing line info: *C:\directory\path\to\codecounter.exe\;*
+[Windows key + Break] > Advanced tab > Environmental Variables button > click Path line > Edit button > Variable value &ndash; append at the end of existing line info: *C:\directory\path\to\codecounter.exe\;*
 
 
 ## Credits
