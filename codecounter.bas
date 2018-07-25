@@ -6,7 +6,7 @@
 ' Purpose:      Recursively count lines of source code and comments in C, BASIC, and general web files.
 ' Copyright:    Martin Latter, November 2011.
 ' Credit:       Richard D. Clark (rdc): walkDir() recursive function.
-' Version:      1.1
+' Version:      1.11
 ' License:      GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 ' URL:          https://github.com/Tinram/CodeCounter.git
 '
@@ -20,7 +20,13 @@ DECLARE SUB walkDir(BYVAL sFolder AS STRING, BYREF sC AS STRING)
 DECLARE SUB displayTotals()
 
 CONST ATTRIBUTE_MASK = fbNormal OR fbDirectory ' = &h37 | set input attribute mask to allow files that are normal, hidden, system or directory
-CONST AS STRING CC_VERSION = "1.1"
+CONST AS STRING CC_VERSION = "1.11"
+
+#IFDEF __FB_64BIT__
+	CONST AS STRING ARCH = "x64"
+#ELSE
+	CONST AS STRING ARCH = "x32"
+#ENDIF
 
 DIM AS STRING sCommand = LCASE(COMMAND(1))
 DIM SHARED AS UINTEGER iTotalCodeLines = 0, iTotalComments = 0, iTotalFiles = 0
@@ -38,7 +44,7 @@ IF sCommand = "-v" OR sCommand = "v" THEN
 	PRINT "Code Counter v." + CC_VERSION
 	PRINT __DATE_ISO__
 	PRINT
-	PRINT "FBC v." + __FB_VERSION__ + " (" + UCASE(__FB_BACKEND__) + ")"
+	PRINT "FBC v." + __FB_VERSION__ + " " + ARCH + " (" + UCASE(__FB_BACKEND__) + ")"
 	#IFDEF __FB_UNIX__
 		PRINT
 	#ENDIF
