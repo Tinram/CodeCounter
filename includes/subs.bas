@@ -6,7 +6,7 @@
 ' Purpose:      Subroutines for codecounter.bas
 ' Copyright:    Martin Latter, November 2011.
 ' Credit:       Richard D. Clark (rdc): walkDir() recursive function.
-' Version:      1.1
+' Version:      1.12
 ' License:      GNU GPL version 3.0 (GPL v3); http://www.gnu.org/licenses/gpl.html
 ' URL:          https://github.com/Tinram/CodeCounter.git
 '
@@ -19,18 +19,18 @@ SUB header()
 
 	PRINT
 	PRINT "Code Counter"
-	PRINT "copysense.co.uk"
+	PRINT "by Tinram"
 	PRINT
 
 END SUB
 
 
-SUB walkDir(BYVAL sFolder AS STRING, BYREF sC AS STRING)
+SUB walkDir(BYVAL sFolder AS STRING, BYREF sC AS STRING, BYREF sC2 AS STRING)
 
 	' subroutine to recurse directories, reading files and incrementing totals
 	' directory recursion by Richard D. Clark (rdc)
 
-	DIM AS STRING sCommand = sC, sSingleComment1, sSingleComment2, sSingleComment3, sMultiLineStart1, sMultiLineFinish1, sMultiLineStart2, sMultiLineFinish2, sFileName, sDirList(), sLineContent, sFMask = "*.*", sFileSeparator = "--------------------------------"
+	DIM AS STRING sCommand = sC, sSuppress = sC2, sSingleComment1, sSingleComment2, sSingleComment3, sMultiLineStart1, sMultiLineFinish1, sMultiLineStart2, sMultiLineFinish2, sFileName, sDirList(), sLineContent, sFMask = "*.*", sFileSeparator = "--------------------------------"
 	DIM AS UINTEGER iOutAttr, iDirCount, iLen = 2, iSpecifiedFile = 0, iFileLineCount = 0, iFileComments = 0, iMultiLineComments = 0, iSingleComment1Len, iSingleComment2Len, iSingleComment3Len, iMultiLineStart1Len, iMultiLineFinish1Len, iMultiLineStart2Len, iMultiLineFinish2Len
 		' iLen: for BASIC and C, sC: local copy from reference: avoid lookup
 	DIM AS INTEGER hFile = FreeFile, i ' i mustn't be a UINT
@@ -134,8 +134,10 @@ SUB walkDir(BYVAL sFolder AS STRING, BYREF sC AS STRING)
 
 					IF OPEN(sFileName, FOR INPUT, AS #hFile) = 0 THEN
 
-						PRINT sFileSeparator
-						PRINT sFileName
+						IF INSTR(sSuppress, "-s") = 0 THEN
+							PRINT sFileSeparator
+							PRINT sFileName
+						END IF
 
 						WHILE NOT EOF(hFile)
 
@@ -198,9 +200,11 @@ SUB walkDir(BYVAL sFolder AS STRING, BYREF sC AS STRING)
 
 					END IF
 
-					PRINT "comment lines: " & iFileComments
-					PRINT "code lines: " & iFileLineCount
-					PRINT sFileSeparator
+					IF INSTR(sSuppress, "-s") = 0 THEN
+						PRINT "comment lines: " & iFileComments
+						PRINT "code lines: " & iFileLineCount
+						PRINT sFileSeparator
+					END IF
 
 					iTotalComments += iFileComments
 					iTotalCodeLines += iFileLineCount
@@ -221,7 +225,7 @@ SUB walkDir(BYVAL sFolder AS STRING, BYREF sC AS STRING)
 	LOOP
 
 	FOR i = 1 TO UBOUND(sDirList)
-		walkDir(sDirList(i), sCommand)
+		walkDir(sDirList(i), sCommand, sSuppress)
 	NEXT i
 
 END SUB
