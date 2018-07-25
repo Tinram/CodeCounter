@@ -33,7 +33,7 @@ Original aim: initiate Code Counter in a project's top-level directory and provi
 
         -w    process general web files: .html, .htm, .css, .php, .inc, .tpl, .js, .sql
 
-*suppress:*
+*supplementary:*
 
         -s    suppress individual file breakdown (display only project summary)
 
