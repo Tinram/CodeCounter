@@ -25,13 +25,15 @@ Original aim: initiate Code Counter in a project's top-level directory and provi
 
         codecounter <option> [-s]
 
-*options:*
+*option:*
 
         -c    process C source files: .c, .cpp, .h
 
         -b    process BASIC source files: .bas, .bi, .vb
 
         -w    process general web files: .html, .htm, .css, .php, .inc, .tpl, .js, .sql
+
+*suppress:*
 
         -s    suppress individual file breakdown (display only project summary)
 
@@ -47,7 +49,7 @@ For large projects, pipe Code Counter's file-by-file output to a file for later 
 
 Install [FreeBASIC](http://www.freebasic.net/forum/viewforum.php?f=1) compiler (fbc).
 
-(Linux: fbc x64 version makes more convenient executables.)
+(Linux: fbc x64 version creates more convenient executables.)
 
 Ensure GCC is available: `whereis gcc`
 
