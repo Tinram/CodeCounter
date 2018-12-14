@@ -10,9 +10,9 @@
 
 Count lines of code and comments in source files in C, BASIC, and general web files.
 
-Code Counter will search for files of the specified type in the **directory from which it's called**, and then search recursively in any sub-directories.
+Code Counter will search for files of the specified type in the **directory from which it's called**, and then search recursively in all sub-directories.
 
-Original aim: initiate Code Counter in a project's top-level directory and provide file statistics on the complete project.
+Original aim: initiate in a project's top-level directory and provide stats on the whole project.
 
 
 ## OS Support
@@ -23,7 +23,9 @@ Original aim: initiate Code Counter in a project's top-level directory and provi
 
 ## Usage
 
-        codecounter <option> [-s]
+```bash
+    codecounter <option> [-s]
+```
 
 *option:*
 
@@ -42,7 +44,9 @@ Original aim: initiate Code Counter in a project's top-level directory and provi
 
 For large projects, pipe Code Counter's file-by-file output to a file for later usage, grepping etc:
 
-        codecounter -c > cc_out.txt
+```bash
+    codecounter -c > cc_out.txt
+```
 
 
 ## Executables
@@ -63,15 +67,21 @@ Ensure GCC is available: `whereis gcc`
 
 ### Linux
 
-        make
+```bash
+    make
+```
 
 or full process:
 
-        make && make install
+```bash
+    make && make install
+```
 
 ### Windows / Compile Manually
 
-        fbc codecounter.bas -gen gcc -O max -w all
+```bash
+    fbc codecounter.bas -gen gcc -O max -w all
+```
 
 
 ## Other
@@ -81,7 +91,9 @@ On both Linux and Windows, it's more convenient for Code Counter to be available
 
 ### Linux
 
-        make install
+```bash
+    make install
+```
 
 Or move the *codecounter* executable to a location such as */usr/local/bin* (location must be present in *$PATH*).
 
